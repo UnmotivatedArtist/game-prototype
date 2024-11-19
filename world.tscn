@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://dghamqtf20ptx"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_7tthx"]
+[ext_resource type="Texture2D" uid="uid://bd1b28unxe3i3" path="res://Buildings/Screenshot 2024-11-13 104814.png" id="2_xdrq1"]
+[ext_resource type="Texture2D" uid="uid://2jf7do85dw73" path="res://Buildings/Screenshot 2024-11-13 102950.png" id="3_8t4vg"]
+[ext_resource type="Texture2D" uid="uid://0mtqbrnhmti6" path="res://Buildings/Screenshot 2024-11-18 110105.png" id="4_q66y1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g0pi"]
+atlas = ExtResource("3_8t4vg")
+region = Rect2(0, 0, 1046, 1041)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1j57"]
+atlas = ExtResource("4_q66y1")
+region = Rect2(0, 0, 870, 875)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01ul5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g0pi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1j57")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="World" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7tthx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_xdrq1")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 31.0
+text = "Upgrade"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 85.0
+offset_right = 1139.0
+offset_bottom = 1049.0
+scale = Vector2(0.1, 0.1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+position = Vector2(600, 530)
+sprite_frames = SubResource("SpriteFrames_01ul5")
+frame_progress = 0.361489
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
